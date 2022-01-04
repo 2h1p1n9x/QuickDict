@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=QuickDict
+Comment=Dictionary and Translation Application
+Comment[zh_CN]=词典与翻译应用
+Comment[zh_TW]=詞典與翻譯應用
+Keywords=Lookup;Dictionary;Translation;
+Keywords[zh_CN]=查询;词典;翻译;
+Keywords[zh_TW]=查詢;詞典;翻譯;
+Exec=QuickDict
+Icon=QuickDict
+Type=Application
+Terminal=false
+Categories=Utility;Education;Dictionary;Translation;
+X-AppImage-Version=0.2.0

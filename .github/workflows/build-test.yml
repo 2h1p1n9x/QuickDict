@@ -70,6 +70,8 @@ jobs:
     runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       #
       # Setup and Configuration
@@ -79,6 +81,7 @@ jobs:
         run: |
           sudo add-apt-repository -y ppa:neovim-ppa/stable
           sudo apt-get install -y neovim ninja-build libqt5svg5 libqt5svg5-dev qt5-default
+          sudo apt-get install -y qtdeclarative5-dev qtmultimedia5-dev libqt5x11extras5-dev qttools5-dev libopencv-dev libtesseract-dev libhunspell-dev libxml2-dev
           sudo apt-get update -y
 
       - name: MacOS - Setup
@@ -128,10 +131,20 @@ jobs:
           CMAKE_BUILD_TYPE: ${{ matrix.flavor }}
           CMAKE_GENERATOR: ${{ matrix.generator }}
         run: >
-          cmake -B ./build
-          -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/install
+          cmake -B ${{ github.workspace }}/build
+          -DCMAKE_INSTALL_PREFIX=/tmp/QuickDict/install
           -DCMAKE_C_COMPILER=${{ matrix.cc }}
           -DCMAKE_CXX_COMPILER=${{ matrix.cxx }}
+          -DENABLE_TESSERACT=OFF
+          -DENABLE_OPENCV=OFF
+          -DENABLE_OPENCC=OFF
+          -DENABLE_HUNSPELL=OFF
+          -DENABLE_UNAC=OFF
+          -DENABLE_QHOTKEY=OFF
+          -DENABLE_KWIN_BLUR=OFF
+          -DUSE_LIBXML2=OFF
+          -DUSE_ZLIB=OFF
+          -DSTATIC_BUILD=ON
 
       - name: Build
         run: cmake --build ${{ github.workspace }}/build
@@ -152,9 +165,12 @@ jobs:
           ARCH: x86_64
         run: |
           cmake --build ./build --target install
+          rm /tmp/QuickDict/install/lib/cmake -rf
+          rm /tmp/QuickDict/install/include/* -rf
           wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
           chmod a+x linuxdeployqt-continuous-x86_64.AppImage
-          ./linuxdeployqt-continuous-x86_64.AppImage ./install/share/applications/nvim-qt.desktop -appimage
+          # ./linuxdeployqt-continuous-x86_64.AppImage ./install/share/applications/nvim-qt.desktop -appimage
+          ./linuxdeployqt-continuous-x86_64.AppImage /tmp/QuickDict/install/share/applications/QuickDict.desktop -appimage -no-copy-copyright-files -no-plugins -no-translations
 
       - name: MacOS - Publish Release Build
         if: ${{ matrix.publish && startsWith(matrix.runner, 'macos') }}
@@ -179,6 +195,7 @@ jobs:
           name: ${{ matrix.name }}
           if-no-files-found: ignore
           path: |
+            QuickDict-*-x86_64.AppImage
             Neovim-Qt-*-x86_64.AppImage
             neovim-qt.dmg
             neovim-qt-installer.msi

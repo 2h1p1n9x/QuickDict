@@ -3,13 +3,6 @@
 #include <QCoreApplication>
 #include <QMutexLocker>
 
-ConfigCenter::ConfigCenter(const QString &fileName, QSettings::Format format, QObject *parent)
-    : QObject(parent)
-    , m_config(fileName, format)
-{}
-
-ConfigCenter::~ConfigCenter() {}
-
 QStringList split_without_empty_parts(const QString &s)
 {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
@@ -20,6 +13,13 @@ QStringList split_without_empty_parts(const QString &s)
 #endif
     return str_list;
 }
+
+ConfigCenter::ConfigCenter(const QString &fileName, QSettings::Format format, QObject *parent)
+    : QObject(parent)
+    , m_config(fileName, format)
+{}
+
+ConfigCenter::~ConfigCenter() {}
 
 QVariant ConfigCenter::value(const QString &key, const QVariant &defaultValue, bool store)
 {
