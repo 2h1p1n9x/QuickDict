@@ -12,9 +12,11 @@ QImage cvmat2qimage(const cv::Mat &src, bool enableDeepCopy)
             dst.setColor(i, qRgb(i, i, i));
         break;
         // BRG image
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
     case CV_8UC3:
         dst = QImage(src.data, src.cols, src.rows, static_cast<int>(src.step), QImage::Format_BGR888);
         break;
+#endif
         // BGRA image
     case CV_8UC4:
         dst = QImage(src.data, src.cols, src.rows, static_cast<int>(src.step), QImage::Format_ARGB32);
@@ -55,6 +57,7 @@ cv::Mat qimage2cvmat(const QImage &src, bool enableDeepCopy)
         cv::cvtColor(dst, dst, cv::COLOR_RGB2BGR);
         // it will change BRG to RBG in src QImage when isDeepCopy == false
         break;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
     case QImage::Format_BGR888:
         dst = cv::Mat(src.height(),
                       src.width(),
@@ -62,6 +65,7 @@ cv::Mat qimage2cvmat(const QImage &src, bool enableDeepCopy)
                       const_cast<unsigned char *>(src.constBits()),
                       static_cast<size_t>(src.bytesPerLine()));
         break;
+#endif
         // BGRA
     case QImage::Format_RGB32:
     case QImage::Format_ARGB32:
