@@ -132,7 +132,7 @@ jobs:
           CMAKE_GENERATOR: ${{ matrix.generator }}
         run: >
           cmake -B ${{ github.workspace }}/build
-          -DCMAKE_INSTALL_PREFIX=/tmp/QuickDict/install
+          -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/install
           -DCMAKE_C_COMPILER=${{ matrix.cc }}
           -DCMAKE_CXX_COMPILER=${{ matrix.cxx }}
           -DENABLE_TESSERACT=OFF
@@ -175,6 +175,8 @@ jobs:
       - name: MacOS - Publish Release Build
         if: ${{ matrix.publish && startsWith(matrix.runner, 'macos') }}
         run: |
+          ls ./build
+          ls ./build/bin
           macdeployqt ./build/bin/nvim-qt.app -dmg
           mv ./build/bin/nvim-qt.dmg neovim-qt.dmg
 
@@ -185,6 +187,8 @@ jobs:
           Push-Location ${{ github.workspace }}/build
           cpack --verbose -G WIX
           Pop-Location
+          ls ./build
+          ls ./install
           Compress-Archive -Path ./install -DestinationPath neovim-qt.zip
           Move-Item -Path ./build/neovim-qt-installer.msi -Destination neovim-qt-installer.msi
 
