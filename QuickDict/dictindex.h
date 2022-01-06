@@ -187,7 +187,7 @@ public:
 
         _serialize(fp, node->_key);
         _serialize(fp, node->_value);
-        ushort num = node->_children.size();
+        unsigned short num = node->_children.size();
         fwrite(&num, sizeof(num), 1, fp);
         Size children_offset = ftell(fp);
         for (int i = 0; i < num; ++i)
@@ -216,7 +216,7 @@ public:
 
         _deserialize(fp, node->_key);
         _deserialize(fp, node->_value);
-        ushort num = node->_children.size();
+        unsigned short num = node->_children.size();
         fread(&num, sizeof(num), 1, fp);
         node->_children.resize(num);
         Size *children_offset_arr = (Size *) malloc(sizeof(Size) * num);
@@ -257,7 +257,7 @@ template<typename T>
 size_t _serialize(FILE *fp, const std::vector<T> &vec)
 {
     size_t bytes = 0;
-    ushort len = vec.size();
+    unsigned short len = vec.size();
     bytes += fwrite(&len, sizeof(len), 1, fp);
     for (const auto &e : vec)
         bytes += _serialize(fp, e);
@@ -268,7 +268,7 @@ template<typename T>
 size_t _deserialize(FILE *fp, std::vector<T> &vec)
 {
     size_t bytes = 0;
-    ushort len;
+    unsigned short len;
     bytes += fread(&len, sizeof(len), 1, fp);
     vec.clear();
     vec.reserve(len);
