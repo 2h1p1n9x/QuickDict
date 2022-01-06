@@ -208,3 +208,4 @@ jobs:
             neovim-qt.dmg
             neovim-qt-installer.msi
             neovim-qt.zip
+            ${{ github.workspace }}/build/QuickDict/cmake_install.cmake
