@@ -9,6 +9,7 @@
 #ifdef ENABLE_UNAC
 #include <unac/unac.h>
 #endif
+#include <QDateTime>
 #include <QFileInfo>
 
 MobiDict::MobiDict(QObject *parent)
