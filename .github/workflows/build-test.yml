@@ -124,7 +124,9 @@ jobs:
       # Build and Test
       #
       - name: Neovim Version
-        run: nvim --version
+        run: |
+          nvim --version
+          qmake --version
 
       - name: Configure
         env:
@@ -170,7 +172,7 @@ jobs:
           wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
           chmod a+x linuxdeployqt-continuous-x86_64.AppImage
           # ./linuxdeployqt-continuous-x86_64.AppImage ./install/share/applications/nvim-qt.desktop -appimage
-          ./linuxdeployqt-continuous-x86_64.AppImage /tmp/QuickDict/install/share/applications/QuickDict.desktop -appimage -no-copy-copyright-files -no-plugins -no-translations
+          ./linuxdeployqt-continuous-x86_64.AppImage ./install/share/applications/QuickDict.desktop -appimage -no-copy-copyright-files -no-plugins -no-translations
 
       - name: MacOS - Publish Release Build
         if: ${{ matrix.publish && startsWith(matrix.runner, 'macos') }}
@@ -187,9 +189,10 @@ jobs:
           Push-Location ${{ github.workspace }}/build
           cpack --verbose -G WIX
           Pop-Location
+          Compress-Archive -Path ./install -DestinationPath neovim-qt.zip
           ls ./build
           ls ./install
-          Compress-Archive -Path ./install -DestinationPath neovim-qt.zip
+          ls ./install/bin
           Move-Item -Path ./build/neovim-qt-installer.msi -Destination neovim-qt-installer.msi
 
       - name: Upload Artifacts
