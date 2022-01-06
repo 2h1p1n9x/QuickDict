@@ -134,7 +134,7 @@ jobs:
           CMAKE_GENERATOR: ${{ matrix.generator }}
         run: >
           cmake -B ${{ github.workspace }}/build
-          -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/install
+          -DCMAKE_INSTALL_PREFIX=install
           -DCMAKE_C_COMPILER=${{ matrix.cc }}
           -DCMAKE_CXX_COMPILER=${{ matrix.cxx }}
           -DENABLE_TESSERACT=OFF
