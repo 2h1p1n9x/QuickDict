@@ -190,6 +190,7 @@ jobs:
           cpack --verbose -G WIX
           Pop-Location
           Compress-Archive -Path ./install -DestinationPath neovim-qt.zip
+          ls .
           ls ./build
           ls ./install
           ls ./install/bin

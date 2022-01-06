@@ -19,3 +19,6 @@ if(NOT APPLE)
 			# DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/32x32/apps/)
 			DESTINATION ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/32x32/apps)
 endif()
+
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
+include(CPackOptions)
