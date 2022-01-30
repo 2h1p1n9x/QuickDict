@@ -28,7 +28,7 @@ Dict {
                         }
                 }
 				for (const lexicalEntry of lexicalEntries) {
-                    let definition = {"partOfSpeech": lexicalEntry.lexicalCategory.id, "list": [], "phonetic": pronunciations[lexicalEntry.lexicalCategory.id]}
+                    let definition = {"group": lexicalEntry.lexicalCategory.id, "list": [], "phonetic": pronunciations[lexicalEntry.lexicalCategory.id]}
                     for (const entry of lexicalEntry.entries) {
                         for (const sense of entry.senses) {
                             definition.list.push({"definition": sense.definitions[0]})

@@ -8,7 +8,7 @@ var sources =
     "engine": "MockDict",
     "definitions": [
       {
-        "partOfSpeech": "noun",
+        "group": "noun",
         "list": [
           {
             "definition": "anything (such as a document or a phonograph record or a photograph) providing permanent evidence of or information about past events;",
@@ -80,7 +80,7 @@ var sources =
         ]
       },
       {
-        "partOfSpeech": "verb",
+        "group": "verb",
         "list": [
           {
             "definition": "make a record of; set down in permanent form",
@@ -149,7 +149,7 @@ var sources =
     ],
     "definitions": [
       {
-        "partOfSpeech": "noun",
+        "group": "noun",
         "list": [
           {
             "definition": "a thing constituting a piece of evidence about the past, especially an account kept in writing or some other permanent form"
@@ -175,7 +175,7 @@ var sources =
         ]
       },
       {
-        "partOfSpeech": "verb",
+        "group": "verb",
         "list": [
           {
             "definition": "set down in writing or some other permanent form for later reference, especially officially"

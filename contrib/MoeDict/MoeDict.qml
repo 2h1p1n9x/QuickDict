@@ -16,7 +16,7 @@ Dict {
                 let definitions = {}
                 for (const entry of data.definitions) {
                     if (!(entry.type in definitions))
-                        definitions[entry.type] = {"partOfSpeech": entry.type, "list": []}
+                        definitions[entry.type] = {"group": entry.type, "list": []}
                     let examples = entry.example ? entry.example : []
                     let quotes = entry.quote ? entry.quote : []
                     definitions[entry.type].list.push({"definition": entry.def, "examples": examples.concat(quotes)})

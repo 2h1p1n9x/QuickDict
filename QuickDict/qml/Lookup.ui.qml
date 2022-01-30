@@ -87,7 +87,7 @@ Page {
                     RowLayout {
                         spacing: dp(8)
                         Text {
-                            text: typeof modelData.partOfSpeech !== "undefined" ? modelData.partOfSpeech : null
+                            text: typeof modelData.group !== "undefined" ? modelData.group : null
                             visible: text ? true : false
                             font.bold: true
                             font.pixelSize: sp(12)
