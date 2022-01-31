@@ -30,7 +30,7 @@ Page {
             spacing: dp(0)
 
             Text {
-                text: "V0.2.0"
+                text: "V0.3.0"
                 font.bold: true
                 font.italic: true
                 font.pixelSize: sp(20)

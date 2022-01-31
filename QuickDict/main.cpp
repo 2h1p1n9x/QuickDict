@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     app.setOrganizationName("QuickDict");
     app.setOrganizationDomain("https://github.com/QuickDict/QuickDict");
     app.setApplicationName("QuickDict");
-    app.setApplicationVersion("0.2.0");
+    app.setApplicationVersion("0.3.0");
     app.setWindowIcon(QIcon(":/images/QuickDict-32x32.png"));
 
     app.setQuitOnLastWindowClosed(false);
