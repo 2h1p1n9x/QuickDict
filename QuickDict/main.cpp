@@ -24,6 +24,10 @@
 #include <QTimer>
 #include <QWindow>
 
+#if defined(_MSC_VER) || defined(__MINGW64__)
+#include <Windows.h>
+#endif
+
 static QFile logFile;
 static QtMessageHandler defaultMessageHandler;
 static bool debugFlag;
@@ -42,6 +46,13 @@ void messageHandler(QtMsgType type, const QMessageLogContext &context, const QSt
 
 int main(int argc, char *argv[])
 {
+#if defined(_MSC_VER) || defined(__MINGW64__)
+    if (AttachConsole(ATTACH_PARENT_PROCESS)) {
+        freopen("CONOUT$", "w", stdout);
+        freopen("CONOUT$", "w", stderr);
+    }
+#endif
+
 #ifdef ENABLE_TESSERACT
     qRegisterMetaType<OcrResult>("OcrResult");
 #endif
