@@ -44,9 +44,11 @@ Page {
                 RowLayout {
                     Text {
                         text: qsTr("Source Language:")
+                        font.pixelSize: sp(14)
                     }
                     ComboBox {
                         model: qd.availableLocales()
+                        font.pixelSize: sp(14)
 
                         onActivated: qd.configCenter.setValue("/lang/sl", currentText)
 
@@ -59,9 +61,11 @@ Page {
                 RowLayout {
                     Text {
                         text: qsTr("Target Language:")
+                        font.pixelSize: sp(14)
                     }
                     ComboBox {
                         model: qd.availableLocales()
+                        font.pixelSize: sp(14)
 
                         onActivated: qd.configCenter.setValue("/lang/tl", currentText)
 
@@ -96,6 +100,7 @@ Page {
                     delegate: CheckBox {
                         checked: modelData.enabled
                         text: modelData.name
+                        font.pixelSize: sp(14)
                         ToolTip.visible: hovered
                         ToolTip.text: modelData.description
 
@@ -134,6 +139,7 @@ Page {
                     delegate: CheckBox {
                         checked: modelData.enabled
                         text: modelData.name
+                        font.pixelSize: sp(14)
                         ToolTip.visible: hovered && modelData.description
                         ToolTip.text: modelData.description
 

@@ -112,7 +112,6 @@ int main(int argc, char *argv[])
 
     QuickDict::createInstance();
     QuickDict *quickDict = QuickDict::instance();
-    quickDict->setSpScale(1.5);
 
     ConfigCenter configCenter(QDir(QuickDict::configDirPath()).filePath("settings.ini"));
     quickDict->setConfigCenter(&configCenter);

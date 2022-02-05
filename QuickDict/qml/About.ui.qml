@@ -59,7 +59,7 @@ Page {
         TextEdit {
             text: qsTr('<a href="https://github.com/QuickDict/QuickDict">QuickDict</a> is licensed under the <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a> license.')
             textFormat: Text.RichText
-            font.pixelSize: sp(12)
+            font.pixelSize: sp(14)
             wrapMode: Text.WordWrap
             Layout.fillWidth: true
             readOnly: true
@@ -74,13 +74,13 @@ Page {
         }
         Text {
             text: "Copyright (C) 2021 Zhiping Xu <2h1p1n9.xu@gmail.com>"
-            font.pixelSize: sp(12)
+            font.pixelSize: sp(14)
             wrapMode: Text.WordWrap
             Layout.fillWidth: true
         }
         Text {
             text: qsTr("The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.")
-            font.pixelSize: sp(10)
+            font.pixelSize: sp(12)
             wrapMode: Text.WordWrap
             Layout.fillWidth: true
         }

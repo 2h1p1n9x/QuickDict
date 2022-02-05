@@ -9,7 +9,7 @@ Dict {
             id: text
             property var modelData
             text: modelData.result
-            font.pixelSize: sp(12)
+            font.pixelSize: sp(14)
             wrapMode: Text.Wrap
         }
     }

@@ -5,7 +5,7 @@ Text {
     property var modelData
     text: modelData.text
     visible: text ? true : false
-    font.pixelSize: sp(12)
+    font.pixelSize: sp(14)
     color: Qt.rgba(0, 0, 0, 0.87)
 
     Loader {

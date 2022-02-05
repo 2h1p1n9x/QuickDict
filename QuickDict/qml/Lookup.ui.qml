@@ -71,13 +71,16 @@ Page {
                 Text {
                     text: modelData.text
                     font.bold: true
-                    font.pixelSize: sp(14)
+                    font.pixelSize: sp(16)
                 }
                 Repeater {
                     model: modelData.phonetic
                     Loader {
                         source: "components/Phonetic.ui.qml"
-                        onLoaded: item.modelData = modelData
+                        onLoaded: {
+                            item.modelData = modelData
+                            item.font.pixelSize = sp(16)
+                        }
                     }
                 }
             }
@@ -90,7 +93,7 @@ Page {
                             text: typeof modelData.group !== "undefined" ? modelData.group : null
                             visible: text ? true : false
                             font.bold: true
-                            font.pixelSize: sp(12)
+                            font.pixelSize: sp(14)
                             color: Qt.rgba(0, 0, 0, 0.6)
                         }
                         Loader {
@@ -108,7 +111,7 @@ Page {
                             RowLayout {
                                 Text {
                                     text: index + 1
-                                    font.pixelSize: sp(12)
+                                    font.pixelSize: sp(14)
                                     color: Qt.rgba(0, 0, 0, 0.6)
                                     Layout.alignment: Qt.AlignTop
                                 }
@@ -116,7 +119,7 @@ Page {
                                     Layout.minimumWidth: 0
                                     TextEdit {
                                         text: modelData.definition
-                                        font.pixelSize: sp(12)
+                                        font.pixelSize: sp(14)
                                         Layout.fillWidth: boundingRect.width > parent.width
                                         wrapMode: Text.Wrap
                                         readOnly: true
@@ -136,13 +139,13 @@ Page {
                                             Text {
                                                 id: bulletText
                                                 text: "\u2022"
-                                                font.pixelSize: sp(12)
+                                                font.pixelSize: sp(14)
                                                 color: Qt.rgba(0, 0, 0, 0.6)
                                                 Layout.alignment: Qt.AlignTop
                                             }
                                             TextEdit {
                                                 text: modelData
-                                                font.pixelSize: sp(12)
+                                                font.pixelSize: sp(14)
                                                 Layout.fillWidth: bulletText.width + parent.spacing + boundingRect.width > parent.width
                                                 wrapMode: Text.Wrap
                                                 readOnly: true

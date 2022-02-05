@@ -17,7 +17,7 @@ Dict {
                 property var modelData
                 text: modelData.translation.text
                 wrapMode: Text.Wrap
-                font.pixelSize: sp(12)
+                font.pixelSize: sp(14)
                 Layout.leftMargin: dp(8)
                 Layout.fillWidth: true
                 readOnly: true

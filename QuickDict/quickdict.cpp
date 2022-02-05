@@ -22,7 +22,7 @@ QuickDict *QuickDict::_instance = nullptr;
 QuickDict::QuickDict(QObject *parent)
     : QObject(parent)
 {
-    m_pixelScale = qApp->primaryScreen()->physicalDotsPerInch() / 160.0;
+    m_pixelScale = qApp->primaryScreen()->logicalDotsPerInch() / 96.0;
 #ifdef ENABLE_OPENCC
     QDir openccDir(dataDirPath());
     openccDir.cd("opencc");

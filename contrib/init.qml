@@ -140,7 +140,7 @@ Item {
             id: text
             property var modelData
             text: modelData.result
-            font.pixelSize: sp(12)
+            font.pixelSize: sp(14)
             textFormat: TextEdit.RichText
             wrapMode: Text.Wrap
             readOnly: true
