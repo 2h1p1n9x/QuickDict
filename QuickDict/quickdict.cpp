@@ -108,6 +108,21 @@ void QuickDict::setTimeout(const QVariant &function, int delay)
     }
 }
 
+QString QuickDict::fontFamily() const
+{
+    return QGuiApplication::font().family();
+}
+
+void QuickDict::setFontFamily(const QString &fontFamily)
+{
+    QFont font = QGuiApplication::font();
+    if (font.family() != fontFamily) {
+        font.setFamily(fontFamily);
+        QGuiApplication::setFont(font);
+        emit fontFamilyChanged();
+    }
+}
+
 qreal QuickDict::dp(qreal value) const
 {
     return value * m_pixelScale * m_dpScale * m_uiScale;

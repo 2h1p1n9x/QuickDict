@@ -49,6 +49,7 @@ Page {
                     ComboBox {
                         model: qd.availableLocales()
                         font.pixelSize: sp(14)
+                        Layout.fillWidth: true
 
                         onActivated: qd.configCenter.setValue("/lang/sl", currentText)
 
@@ -66,6 +67,7 @@ Page {
                     ComboBox {
                         model: qd.availableLocales()
                         font.pixelSize: sp(14)
+                        Layout.fillWidth: true
 
                         onActivated: qd.configCenter.setValue("/lang/tl", currentText)
 
@@ -73,6 +75,65 @@ Page {
                             let lang = qd.configCenter.value("/lang/tl", "en_US")
                             currentIndex = model.indexOf(lang)
                         }
+                    }
+                }
+            }
+
+            ColumnLayout {
+                RowLayout {
+                    spacing: dp(8)
+                    Text {
+                        text: qsTr("Interface")
+                        font.bold: true
+                        font.italic: true
+                        font.pixelSize: sp(20)
+                        color: Qt.rgba(0, 0, 0, 0.6)
+                    }
+                    Rectangle {
+                        Layout.preferredHeight: 2
+                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignCenter
+                        color: Qt.rgba(0, 0, 0, 0.38)
+                    }
+                }
+                RowLayout {
+                    Text {
+                        text: qsTr("Font Family:")
+                        font.pixelSize: sp(14)
+                    }
+                    ComboBox {
+                        model: Qt.fontFamilies()
+                        font.pixelSize: sp(14)
+                        Layout.fillWidth: true
+
+                        onActivated: {
+                            qd.fontFamily = currentText
+                            qd.configCenter.setValue("/interface/fontFamily", currentText)
+                        }
+
+                        Component.onCompleted: currentIndex = model.indexOf(qd.fontFamily)
+                    }
+                }
+                RowLayout {
+                    Text {
+                        text: qsTr("Scale Factor:")
+                        font.pixelSize: sp(14)
+                    }
+                    Slider {
+                        id: scaleFactorSlider
+                        from: 1.0
+                        to: 3.0
+                        Layout.fillWidth: true
+
+                        Component.onCompleted: value = qd.spScale
+                        onMoved: {
+                            qd.spScale = value
+                            qd.configCenter.setValue("/interface/scaleFactor", qd.spScale)
+                        }
+                    }
+                    Text {
+                        text: `${Math.round(scaleFactorSlider.value * 100)}%`
+                        font.pixelSize: sp(14)
                     }
                 }
             }

@@ -129,6 +129,12 @@ int main(int argc, char *argv[])
     quickDict->registerMonitor(&mouseOverMonitor);
 #endif
 
+    // we set font family before loading qmls to make font family change global,
+    // i.e. also changes the font family of home.qml
+    QVariant fontFamily = configCenter.value("/interface/fontFamily");
+    if (fontFamily.isValid())
+        quickDict->setFontFamily(fontFamily.toString());
+
     QQmlApplicationEngine engine(quickDict);
     const QUrl url(QStringLiteral("qrc:/home.qml"));
     QObject::connect(
@@ -145,6 +151,12 @@ int main(int argc, char *argv[])
     // register `setTimeout` in js engine
     engine.rootContext()->setContextObject(quickDict);
     engine.load(url);
+
+    // we set scale factor after loading qmls to make scale factor change local,
+    // i.e. does not change the scale factor of home.qml
+    QVariant scaleFactor = configCenter.value("/interface/scaleFactor");
+    if (scaleFactor.isValid())
+        quickDict->setSpScale(scaleFactor.toDouble());
 
     QTimer::singleShot(200, quickDict, [quickDict]() { quickDict->loadConfig(); });
 

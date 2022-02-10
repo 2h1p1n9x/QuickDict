@@ -34,6 +34,7 @@ class QuickDict : public QObject
     Q_PROPERTY(QString sourceLanguage READ sourceLanguage WRITE setSourceLanguage NOTIFY sourceLanguageChanged);
     Q_PROPERTY(QString targetLanguage READ targetLanguage WRITE setTargetLanguage NOTIFY targetLanguageChanged);
 
+    Q_PROPERTY(QString fontFamily READ fontFamily WRITE setFontFamily NOTIFY fontFamilyChanged);
     Q_PROPERTY(qreal dpScale READ dpScale WRITE setDpScale NOTIFY dpScaleChanged);
     Q_PROPERTY(qreal spScale READ spScale WRITE setSpScale NOTIFY spScaleChanged);
     Q_PROPERTY(qreal uiScale READ uiScale WRITE setUiScale NOTIFY uiScaleChanged);
@@ -68,6 +69,9 @@ public:
     Q_INVOKABLE qreal dp(qreal value) const;
     Q_INVOKABLE qreal sp(qreal value) const;
 
+    QString fontFamily() const;
+    void setFontFamily(const QString &fontFamily);
+    Q_SIGNAL void fontFamilyChanged();
     qreal dpScale() const { return m_dpScale; }
     void setDpScale(qreal dpScale);
     Q_SIGNAL void dpScaleChanged();
