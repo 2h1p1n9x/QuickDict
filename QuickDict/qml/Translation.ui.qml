@@ -18,6 +18,7 @@ Page {
             Layout.fillHeight: true
             width: 200
             height: 300
+            zoomFactor: qd.spScale
         }
         RowLayout {
             visible: translationButtonRepeater.model.length > 1
