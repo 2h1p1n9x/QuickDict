@@ -34,18 +34,19 @@ MdxDict::~MdxDict()
 
 void MdxDict::onQuery(const QString &text)
 {
-    QString trimmed = text.trimmed();
+    QString normalized = text.trimmed().toLower();
     QStringList textList;
 #ifdef ENABLE_HUNSPELL
-    std::vector<std::string> l = QuickDict::instance()->hunspell()->stem(trimmed.toStdString());
-    if (!l.empty()) {
+    Hunspell *hunspell = QuickDict::instance()->hunspell();
+    if (!hunspell->spell(normalized.toStdString())) {
+        std::vector<std::string> l = hunspell->suggest(normalized.toStdString());
         for (const auto &s : l)
             textList.append(QString::fromStdString(s));
-    } else {
-        textList << trimmed;
     }
+    if (!textList.contains(normalized))
+        textList.prepend(normalized);
 #else
-    textList << trimmed.toLower();
+    textList << normalized;
 #endif
 
     for (QString text_ : qAsConst(textList)) {
