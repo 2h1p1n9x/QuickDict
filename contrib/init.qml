@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.15
 import "UrbanDict" as UrbanDict
 import "DictdDict" as DictdDict
 import "GoogleTranslate" as GoogleTranslate
+import "GoogleTTS" as GoogleTTS
 import "MoeDict" as MoeDict
 import "MockDict" as MockDict
 import "DeepLTranslate" as DeepLTranslate
@@ -34,6 +35,9 @@ Item {
     }
     GoogleTranslate.GoogleTranslate {
         id: googleTranslate
+    }
+    GoogleTTS.GoogleTTS {
+        id: googleTTS
     }
     MoeDict.MoeDict {
         id: moeDict
