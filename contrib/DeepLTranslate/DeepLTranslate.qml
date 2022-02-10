@@ -9,20 +9,16 @@ Dict {
     property string authKey
     property string tl
     property var delegate: Component {
-        ColumnLayout {
-            property alias modelData: text.modelData
-
-            TextEdit {
-                id: text
-                property var modelData
-                text: modelData.translation.text
-                wrapMode: Text.Wrap
-                font.pixelSize: sp(14)
-                Layout.leftMargin: dp(8)
-                Layout.fillWidth: true
-                readOnly: true
-                selectByMouse: true
-            }
+        TextEdit {
+            id: text
+            property var modelData
+            text: modelData.translation.text
+            wrapMode: Text.Wrap
+            font.pixelSize: sp(14)
+            Layout.leftMargin: dp(8)
+            Layout.fillWidth: true
+            readOnly: true
+            selectByMouse: true
         }
     }
 
