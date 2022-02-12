@@ -17,7 +17,6 @@ Dict {
 
             Audio {
                 id: googleTtsAudio
-                loops: Audio.Infinite
             }
 
             onClicked: {
