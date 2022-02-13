@@ -73,7 +73,7 @@ Page {
             }
         }
         Text {
-            text: "Copyright (C) 2021 Zhiping Xu <2h1p1n9.xu@gmail.com>"
+            text: "Copyright (C) 2021-2022  Zhiping Xu <2h1p1n9.xu@gmail.com>"
             font.pixelSize: sp(14)
             wrapMode: Text.WordWrap
             Layout.fillWidth: true
