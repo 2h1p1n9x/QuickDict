@@ -119,8 +119,11 @@ ApplicationWindow {
         }
 
         onActivated: {
-            focusOnTextField()
-            showOnTop()
+            // if reason is DoubleClick/Trigger/MiddleClick
+            if (reason >= 2) {
+                focusOnTextField()
+                showOnTop()
+            }
         }
     }
 
